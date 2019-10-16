@@ -22,6 +22,12 @@
             <tag name="console.command" />
         </service>
 
+        <service id="setono_sylius_redirect.service.finder_service" class="Setono\SyliusRedirectPlugin\Service\FinderService">
+            <argument type="service" id="setono_sylius_redirect.repository.redirect" />
+            <argument type="service" id="setono_sylius_redirect.manager.redirect" />
+        </service>
+
+
         <!-- Event Listeners -->
         <service id="Setono\SyliusRedirectPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems" />
@@ -35,7 +41,7 @@
 
         <service id="Setono\SyliusRedirectPlugin\EventListener\ControllerListener">
             <argument type="service" id="setono_sylius_redirect.repository.redirect" />
-            <argument type="service" id="setono_sylius_redirect.manager.redirect" />
+            <argument type="service" id="setono_sylius_redirect.service.finder_service" />
             <tag name="kernel.event_listener" event="kernel.controller" />
         </service>
 
